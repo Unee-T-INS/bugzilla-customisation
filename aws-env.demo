@@ -18,15 +18,12 @@
 
 	export PARAMS_URL=https://raw.githubusercontent.com/Unee-T-INS/bugzilla-customisation/master/params/demo-params.json
 
-# We prepare the hardcoded variables that we will need to deploy what's needed
-
-    export STAGE=demo
-
 # Variables that are maintained in the AWS parameter store for the environment:
 
     export AWS_REGION=$(getparam DEFAULT_REGION)
 	export DOMAIN=$(getparam DOMAIN)
-	export INSTALLATION_ID=$(getparam INSTALLATION_ID)
+	export INSTALLATION_ID=$(getparam INSTALLATION_ID)	
+	export STAGE=$(getparam STAGE)
 
 	export API_ACCESS_TOKEN=$(getparam API_ACCESS_TOKEN)
 
