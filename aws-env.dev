@@ -27,8 +27,15 @@
 
 	export API_ACCESS_TOKEN=$(getparam API_ACCESS_TOKEN)
 
-	export MYSQL_USER=$(getparam BUGZILLA_DB_USER)
-	export MYSQL_DATABASE=$(getparam BUGZILLA_DB_NAME)
+	export BUGZILLA_DB_USER=$(getparam BUGZILLA_DB_USER)
+	export BUGZILLA_DB_NAME=$(getparam BUGZILLA_DB_NAME)
+	# Temporary patch: we need both variables until we review the whole code to use
+	# - BUGZILLA_DB_USER
+	# - BUGZILLA_DB_NAME
+	export MYSQL_USER=$BUGZILLA_DB_USER
+	export MYSQL_DATABASE=$BUGZILLA_DB_NAME
+	# END Temporary patch
+
 	export MYSQL_HOST=$(getparam MYSQL_HOST)
 	export MYSQL_PASSWORD=$(getparam BUGZILLA_DB_PASSWORD)
 	export MYSQL_PORT=$(getparam MYSQL_PORT)
