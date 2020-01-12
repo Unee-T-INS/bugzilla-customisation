@@ -20,6 +20,7 @@
 
 # Variables that are maintained in the AWS parameter store for the environment:
 
+    export GITHUB_ORGANIZATION=$(getparam GITHUB_ORGANIZATION)
     export AWS_REGION=$(getparam DEFAULT_REGION)
 	export DOMAIN=$(getparam DOMAIN)
 	export INSTALLATION_ID=$(getparam INSTALLATION_ID)
