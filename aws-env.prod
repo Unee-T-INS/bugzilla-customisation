@@ -18,22 +18,33 @@
 
 	export PARAMS_URL=https://raw.githubusercontent.com/Unee-T-INS/bugzilla-customisation/master/params/prod-params.json
 
-# We prepare the hardcoded variables that we will need to deploy what's needed
-
-    export STAGE=prod
-
 # Variables that are maintained in the AWS parameter store for the environment:
 
-    export AWS_REGION=$(getparam DEFAULT_REGION)
+    export GITHUB_ORGANIZATION=$(getparam GITHUB_ORGANIZATION)
+	export AWS_DEFAULT_REGION=$(getparam DEFAULT_REGION)
+	# Temporary patch: we need both variables until we review the whole code to use
+	# - AWS_DEFAULT_REGION
+	export AWS_REGION=$AWS_DEFAULT_REGION
+	# END Temporary patch
 	export DOMAIN=$(getparam DOMAIN)
 	export INSTALLATION_ID=$(getparam INSTALLATION_ID)
+	export STAGE=$(getparam STAGE)
 
 	export API_ACCESS_TOKEN=$(getparam API_ACCESS_TOKEN)
 
-	export MYSQL_USER=$(getparam BUGZILLA_DB_USER)
-	export MYSQL_DATABASE=$(getparam BUGZILLA_DB_NAME)
+	export BUGZILLA_DB_NAME=$(getparam BUGZILLA_DB_NAME)
+	export BUGZILLA_DB_USER=$(getparam BUGZILLA_DB_USER)
+	export BUGZILLA_DB_PASSWORD=$(getparam BUGZILLA_DB_PASSWORD)
+	# Temporary patch: we need both variables until we review the whole code to use
+	# - BUGZILLA_DB_USER
+	# - BUGZILLA_DB_NAME
+	# - BUGZILLA_DB_PASSWORD
+	export MYSQL_DATABASE=$BUGZILLA_DB_NAME
+	export MYSQL_USER=$BUGZILLA_DB_USER
+	export MYSQL_PASSWORD=$BUGZILLA_DB_PASSWORD
+	# END Temporary patch
+
 	export MYSQL_HOST=$(getparam MYSQL_HOST)
-	export MYSQL_PASSWORD=$(getparam BUGZILLA_DB_PASSWORD)
 	export MYSQL_PORT=$(getparam MYSQL_PORT)
 
 	export SES_SMTP_PASSWORD=$(getparam SES_SMTP_PASSWORD)

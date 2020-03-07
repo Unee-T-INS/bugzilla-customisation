@@ -14,7 +14,7 @@
 #
 # We needs several variables that are stored in the aws-env.[stage] file
 #		- STAGE
-#		- AWS_REGION
+#		- AWS_DEFAULT_REGION
 #       - AWS_PROFILE
 #       - MYSQL_HOST
 #       - MYSQL_PORT
@@ -32,6 +32,6 @@ source aws-env.dev
 
 curl -O https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem
 
-TOKEN="$(aws --profile $AWS_PROFILE rds generate-db-auth-token --hostname $MYSQL_HOST --port $MYSQL_PORT --username $IAMUSER --region=$AWS_REGION)"
+TOKEN="$(aws --profile $AWS_PROFILE rds generate-db-auth-token --hostname $MYSQL_HOST --port $MYSQL_PORT --username $IAMUSER --region=$AWS_DEFAULT_REGION)"
 
 mysql -h $MYSQL_HOST -P $MYSQL_PORT --ssl-ca=./rds-combined-ca-bundle.pem --enable-cleartext-plugin --user=$IAMUSER --password=$TOKEN
