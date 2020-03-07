@@ -13,7 +13,7 @@
 #	- Variables stored in the aws-env.[stage] file
 #		- STAGE
 #		- PROFILE
-#		- AWS_REGION
+#		- AWS_DEFAULT_REGION
 #
 #	- Variables need to be set when 
 #		- Option 1: .travis.yml is called.
