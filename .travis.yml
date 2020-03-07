@@ -24,7 +24,6 @@
 # Case 2: Created when Travis CI runs
     # - IMAGE_TAG
 
-sudo: required
 language: generic
 services:
   - docker
