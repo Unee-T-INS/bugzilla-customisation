@@ -59,14 +59,6 @@ matrix:
         script: PROFILE=$AWS_PROFILE_DEV AWS_ACCESS_KEY_ID=$AWS_ACCOUNT_USER_ID_DEV AWS_SECRET_ACCESS_KEY=$AWS_ACCOUNT_SECRET_DEV AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION ./deploy.sh -d
       on:
         branch: master
-    # The DEMO environment has NOT been prepared <--- commenting out
-    # - env: DEPLOY=demo
-    #   if: tag IS present
-    #   deploy:
-    #     provider: script
-    #     script: PROFILE=$AWS_PROFILE_DEMO AWS_ACCESS_KEY_ID=$AWS_ACCOUNT_USER_ID_DEMO AWS_SECRET_ACCESS_KEY=$AWS_ACCOUNT_SECRET_DEMO AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION ./deploy.sh -s
-    #   on:
-    #     tags: true
     - env: DEPLOY=prod
       if: tag IS present
       deploy:
@@ -75,3 +67,12 @@ matrix:
       on:
         all_branches: true
         tags: true
+
+    # The DEMO environment has NOT been prepared <--- commenting out
+    # - env: DEPLOY=demo
+    #   if: tag IS present
+    #   deploy:
+    #     provider: script
+    #     script: PROFILE=$AWS_PROFILE_DEMO AWS_ACCESS_KEY_ID=$AWS_ACCOUNT_USER_ID_DEMO AWS_SECRET_ACCESS_KEY=$AWS_ACCOUNT_SECRET_DEMO AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION ./deploy.sh -s
+    #   on:
+    #     tags: true
