@@ -40,7 +40,7 @@ before_install:
     chmod +x $HOME/.local/bin/ecs-cli
 
 install:
-   - docker build -t $DOCKER_CI_REPO_NAME .
+  - docker build -t $DOCKER_CI_REPO_NAME .
 
 # Do NOT replace the docker image each time
 # after_success:
@@ -57,22 +57,13 @@ matrix:
       deploy:
         provider: script
         script: PROFILE=$AWS_PROFILE_DEV AWS_ACCESS_KEY_ID=$AWS_ACCOUNT_USER_ID_DEV AWS_SECRET_ACCESS_KEY=$AWS_ACCOUNT_SECRET_DEV AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION ./deploy.sh -d
-      on:
-        branch: master
+        on:
+          branch: master
     - env: DEPLOY=prod
       if: tag IS present
       deploy:
         provider: script
         script: PROFILE=$AWS_PROFILE_PROD AWS_ACCESS_KEY_ID=$AWS_ACCOUNT_USER_ID_PROD AWS_SECRET_ACCESS_KEY=$AWS_ACCOUNT_SECRET_PROD AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION ./deploy.sh -p
-      on:
-        all_branches: true
-        tags: true
-
-    # The DEMO environment has NOT been prepared <--- commenting out
-    # - env: DEPLOY=demo
-    #   if: tag IS present
-    #   deploy:
-    #     provider: script
-    #     script: PROFILE=$AWS_PROFILE_DEMO AWS_ACCESS_KEY_ID=$AWS_ACCOUNT_USER_ID_DEMO AWS_SECRET_ACCESS_KEY=$AWS_ACCOUNT_SECRET_DEMO AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION ./deploy.sh -s
-    #   on:
-    #     tags: true
+        on:
+          branch: master
+          tags: true
